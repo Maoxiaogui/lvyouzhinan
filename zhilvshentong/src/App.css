@@ -1,0 +1,266 @@
+/* 全局样式重置 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
+}
+
+/* 布局样式 */
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0;
+  background-color: #f0f2f5;
+}
+
+/* 容器样式 */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 页脚样式 */
+.main-footer {
+  background-color: #001529;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 32px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 16px;
+}
+
+.footer-section h4 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer-section p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: white;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+}
+
+/* 介绍区域样式 */
+.intro-section {
+  padding: 64px 0;
+  background-color: white;
+  margin: 32px 0;
+}
+
+.intro-section h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 32px;
+}
+
+.intro-section > .container > p {
+  text-align: center;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto 48px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.feature-item {
+  padding: 24px;
+  background-color: #fafafa;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feature-item h3 {
+  color: #1890ff;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.feature-item p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* 错误页面样式 */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  text-align: center;
+}
+
+.error-page h1 {
+  font-size: 72px;
+  color: #1890ff;
+  margin: 0 0 16px 0;
+}
+
+.error-page p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* 加载中样式 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.loading-spinner {
+  font-size: 18px;
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .main-footer {
+    padding: 24px 0;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+  
+  .footer-section {
+    margin-bottom: 24px;
+    min-width: auto;
+  }
+  
+  .intro-section {
+    padding: 48px 0;
+    margin: 16px 0;
+  }
+  
+  .intro-section h2 {
+    font-size: 24px;
+  }
+  
+  .intro-section > .container > p {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  
+  .feature-grid {
+    gap: 16px;
+  }
+  
+  .feature-item {
+    padding: 16px;
+  }
+  
+  .feature-item h3 {
+    font-size: 16px;
+  }
+  
+  .error-page h1 {
+    font-size: 48px;
+  }
+  
+  .error-page p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-section {
+    padding: 32px 0;
+  }
+  
+  .intro-section h2 {
+    font-size: 20px;
+  }
+  
+  .intro-section > .container > p {
+    font-size: 13px;
+  }
+  
+  .feature-item {
+    padding: 16px;
+  }
+  
+  .error-page h1 {
+    font-size: 36px;
+  }
+}

@@ -1,0 +1,251 @@
+/* FeatureCards组件样式 */
+.container {
+  padding: 60px 24px;
+  background-color: #fafafa;
+}
+
+/* 头部样式 */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #1890ff;
+  border-radius: 2px;
+}
+
+.sectionDescription {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 卡片容器 */
+.cardsContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 单个卡片 */
+.card {
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1890ff, #52c41a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* 卡片内容 */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 图标容器 */
+.iconContainer {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.card:hover .iconContainer {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* 颜色变体 */
+.blue {
+  background-color: #1890ff;
+}
+
+.green {
+  background-color: #52c41a;
+}
+
+.orange {
+  background-color: #fa8c16;
+}
+
+.teal {
+  background-color: #13c2c2;
+}
+
+/* 卡片标题和描述 */
+.cardTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.cardDescription {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* 了解更多按钮 */
+.learnMoreButton {
+  background: none;
+  border: none;
+  color: #1890ff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.learnMoreButton:hover {
+  color: #40a9ff;
+  transform: translateX(4px);
+}
+
+.arrowIcon {
+  font-size: 12px;
+  transition: transform 0.3s;
+}
+
+.learnMoreButton:hover .arrowIcon {
+  transform: translateX(2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 16px;
+  }
+  
+  .sectionTitle {
+    font-size: 28px;
+  }
+  
+  .sectionDescription {
+    font-size: 16px;
+  }
+  
+  .cardsContainer {
+    gap: 20px;
+  }
+  
+  .card {
+    margin-bottom: 0;
+  }
+  
+  .cardContent {
+    padding: 0;
+  }
+  
+  .cardTitle {
+    font-size: 18px;
+  }
+  
+  .cardDescription {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 24px;
+  }
+  
+  .sectionTitle::after {
+    width: 60px;
+    height: 3px;
+  }
+  
+  .sectionDescription {
+    font-size: 15px;
+  }
+  
+  .iconContainer {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.card:nth-child(4) {
+  animation-delay: 0.3s;
+}

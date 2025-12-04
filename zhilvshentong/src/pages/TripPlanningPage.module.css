@@ -1,0 +1,378 @@
+/* TripPlanningPage组件样式 */
+.content {
+  padding: 24px;
+  background-color: #f0f2f5;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 表单卡片 */
+.formCard {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.form {
+  margin-bottom: 0;
+}
+
+.form .ant-form-item {
+  margin-bottom: 16px;
+}
+
+.form .ant-form-item-label > label {
+  font-weight: 500;
+  color: #555;
+}
+
+.datePicker {
+  width: 100%;
+}
+
+.interestsSelect {
+  width: 100%;
+}
+
+.switchFormItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.switchLabel {
+  margin-left: 12px;
+  color: #666;
+}
+
+.generateButton {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  transition: all 0.3s;
+}
+
+.generateButton:hover:not(:disabled) {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+}
+
+/* 行程预览卡片 */
+.tripPreviewCard {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-height: 600px;
+}
+
+/* 行程头部 */
+.tripHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 20px;
+}
+
+.tripTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.tripMeta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.carbonBadge {
+  background-color: #52c41a;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tripActions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 日期切换栏 */
+.dayTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.dayTab {
+  border-radius: 20px;
+  padding: 8px 16px;
+  transition: all 0.3s;
+  background-color: #f5f5f5;
+  border-color: #f5f5f5;
+}
+
+.dayTab:hover {
+  background-color: #e6f7ff;
+  border-color: #91d5ff;
+  color: #1890ff;
+}
+
+.activeDayTab {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: white;
+}
+
+/* 行程内容 */
+.tripContent {
+  position: relative;
+}
+
+.dayContent {
+  padding-left: 24px;
+  position: relative;
+}
+
+.dayContent::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e8e8e8;
+}
+
+.dayTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.dayTitle::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #1890ff;
+  border: 3px solid #e6f7ff;
+}
+
+/* 活动项 */
+.activityItem {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.activityItem::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 12px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #52c41a;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #e6f7ff;
+}
+
+.activityTime {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1890ff;
+  min-width: 80px;
+  padding-top: 2px;
+}
+
+.activityInfo {
+  flex: 1;
+}
+
+.activityName {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.activityDescription {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.activityTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.activityTag {
+  font-size: 12px;
+  background-color: #f0f5ff;
+  color: #1890ff;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* 优化建议区域 */
+.optimizationSection {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.optimizationSection h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.optimizationList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.optimizationList li {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.optimizationList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #52c41a;
+  font-weight: bold;
+}
+
+/* 空状态 */
+.emptyStateCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  color: #d9d9d9;
+  margin-bottom: 16px;
+}
+
+.emptyState h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.emptyState p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .tripHeader {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .tripActions {
+    justify-content: center;
+  }
+  
+  .tripMeta {
+    gap: 12px;
+  }
+  
+  .dayTabs {
+    justify-content: center;
+  }
+  
+  .activityItem {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .activityTime {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle,
+  .tripTitle {
+    font-size: 20px;
+  }
+  
+  .tripActions {
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+  
+  .tripActions Button {
+    flex: 1;
+  }
+  
+  .dayTab {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
