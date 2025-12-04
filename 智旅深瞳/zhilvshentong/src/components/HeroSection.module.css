@@ -1,0 +1,335 @@
+/* HeroSection组件样式 */
+.container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景图片层 */
+.backgroundLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 1;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 内容层 */
+.contentLayer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 24px;
+}
+
+/* 文本部分 */
+.textSection {
+  padding-right: 24px;
+}
+
+.titleContainer {
+  max-width: 500px;
+}
+
+.title {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.highlight {
+  color: #1890ff;
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #1890ff;
+  border-radius: 2px;
+}
+
+.description {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  opacity: 0.95;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.primaryButton,
+.secondaryButton {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+}
+
+.primaryButton {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.primaryButton:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+}
+
+.secondaryButton {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.secondaryButton:hover {
+  background-color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.buttonLink {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+/* 搜索部分 */
+.searchSection {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.searchCard {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.searchCard.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.searchTitle {
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  color: #999;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.input,
+.datePicker,
+.select {
+  padding-left: 48px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #e8e8e8;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.input:focus,
+.datePicker:focus,
+.select:focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.datePicker {
+  width: 100%;
+}
+
+.datePicker .ant-picker-input > input {
+  font-size: 16px;
+}
+
+.searchButton {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  transition: all 0.3s;
+}
+
+.searchButton:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+}
+
+/* 热门目的地 */
+.popularDestinations {
+  margin-top: 24px;
+}
+
+.popularTitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.destinationTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.destinationTag {
+  padding: 6px 12px;
+  background-color: #f0f5ff;
+  color: #1890ff;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.destinationTag:hover {
+  background-color: #1890ff;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* 动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+  }
+  
+  .textSection,
+  .searchSection {
+    padding: 0;
+  }
+  
+  .textSection {
+    margin-bottom: 40px;
+  }
+  
+  .title {
+    font-size: 36px;
+    text-align: center;
+  }
+  
+  .description {
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .actionButtons {
+    justify-content: center;
+  }
+  
+  .searchCard {
+    padding: 24px;
+  }
+  
+  .searchTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 28px;
+  }
+  
+  .description {
+    font-size: 14px;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  .searchCard {
+    padding: 20px;
+  }
+  
+  .input,
+  .datePicker,
+  .select {
+    height: 44px;
+    font-size: 14px;
+  }
+}

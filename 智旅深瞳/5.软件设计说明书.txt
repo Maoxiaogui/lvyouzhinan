@@ -1,0 +1,278 @@
+# 智旅深瞳旅游指南平台  
+## 软件设计说明书  
+
+---
+
+## 1. 系统架构设计  
+### 1.1 架构图（Mermaid语法）  
+```mermaid
+graph TD
+    A[客户端] --> B{前端服务}
+    B --> C[Vue3 + Element Plus]
+    B --> D[Electron桌面端]
+    
+    E[微服务网关] --> F[智能行程规划服务]
+    E --> G[实时信息聚合服务]
+    E --> H[文化体验推荐服务]
+    E --> I[碳足迹计算服务]
+    
+    F --> J[AI模型服务]
+    G --> K[Mapbox API]
+    G --> L[气象局API]
+    H --> M[UGC内容库]
+    I --> N[碳排放数据库]
+    
+    O[数据库集群] --> P[MySQL主库]
+    O --> Q[Redis缓存]
+    O --> R[Elasticsearch搜索]
+    
+    style A fill:#f9f,stroke:#333
+    style E fill:#c7f,stroke:#333
+    style O fill:#ffc,stroke:#333
+```
+
+### 1.2 架构说明  
+- **前端层**：采用Vue3 + Element Plus实现响应式设计，Electron开发桌面端  
+- **服务层**：基于Spring Cloud微服务架构，通过Nginx反向代理实现负载均衡  
+- **AI层**：Python + TensorFlow Lite部署轻量级模型，提供实时推理能力  
+- **数据层**：MySQL主从复制 + Redis缓存热点数据 + Elasticsearch支持全文搜索  
+
+---
+
+## 2. 核心设计思想  
+### 2.1 设计原则  
+1. **分层设计**：  
+   - 表现层（前端）与业务逻辑层（微服务）分离  
+   - 数据访问层抽象为统一DAO接口  
+
+2. **模块化**：  
+   - 每个核心功能独立为微服务（如行程规划服务、实时信息服务）  
+   - 通过Feign Client实现服务间通信  
+
+3. **高内聚低耦合**：  
+   - AI算法模块封装为独立服务，通过REST API调用  
+   - 配置中心统一管理服务依赖关系  
+
+4. **可扩展性**：  
+   - 采用Kubernetes容器化部署，支持动态扩容  
+   - 插件化设计支持新景点/体验项目的快速接入  
+
+5. **容错性**：  
+   - 服务降级：Hystrix实现熔断机制  
+   - 异常重试：Spring Retry自动重试失败请求  
+
+---
+
+## 3. 数据结构设计  
+### 3.1 实体-关系模型（ER图）  
+```mermaid
+erDiagram
+    USER ||--o{ TRIP : "拥有"
+    TRIP ||--o{ ACTIVITY : "包含"
+    ACTIVITY ||--o{ LOCATION : "位于"
+    ACTIVITY ||--o{ EXPERIENCE : "关联"
+    
+    USER {
+        id INT PK
+        username VARCHAR
+        email VARCHAR
+        preferences JSON
+    }
+    
+    TRIP {
+        id INT PK
+        user_id INT FK
+        start_date DATE
+        end_date DATE
+        total_budget DECIMAL
+    }
+    
+    ACTIVITY {
+        id INT PK
+        trip_id INT FK
+        type ENUM("SCENERY", "EXPERIENCE")
+        duration INT
+    }
+    
+    LOCATION {
+        id INT PK
+        name VARCHAR
+        coordinates POINT
+        avg_rating FLOAT
+    }
+    
+    EXPERIENCE {
+        id INT PK
+        location_id INT FK
+        title VARCHAR
+        price DECIMAL
+        tags JSON
+    }
+```
+
+### 3.2 核心数据对象结构  
+```json
+{
+  "Trip": {
+    "id": 1001,
+    "userId": 123,
+    "startDate": "2026-01-15",
+    "endDate": "2026-01-22",
+    "totalBudget": 8000.00,
+    "activities": [
+      {
+        "id": 2001,
+        "type": "SCENERY",
+        "location": {
+          "id": 3001,
+          "name": "西湖",
+          "coordinates": [120.153918, 30.234417],
+          "avgRating": 4.8
+        },
+        "duration": 3
+      },
+      {
+        "id": 2002,
+        "type": "EXPERIENCE",
+        "experience": {
+          "id": 4001,
+          "title": "西湖龙井采茶体验",
+          "price": 199.00,
+          "tags": ["茶文化", "户外"]
+        }
+      }
+    ]
+  }
+}
+```
+
+---
+
+## 4. 模块详细设计  
+### 4.1 智能行程规划模块  
+**处理流程**：  
+1. **输入解析**  
+   - 用户偏好解析器（JSON Schema校验）  
+   - 预算约束转换器（将中文数字转换为DECIMAL类型）  
+
+2. **AI模型调用**  
+   - 调用Transformer模型生成候选方案  
+   - 多目标优化算法（NSGA-II）平衡时间/预算/体验度  
+
+3. **结果生成**  
+   - 行程甘特图生成器（基于SVG渲染）  
+   - 预算分配计算器（按日拆分总预算）  
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant TripService
+    participant AIEngine
+    
+    User->>Frontend: 提交旅行偏好
+    Frontend->>TripService: 调用/generate-trip接口
+    TripService->>AIEngine: 发起行程规划请求
+    AIEngine-->>TripService: 返回3套候选方案
+    TripService-->>Frontend: 返回行程甘特图
+    Frontend->>User: 展示行程方案
+```
+
+### 4.2 实时信息聚合模块  
+**数据流设计**：  
+1. **数据采集层**  
+   - Mapbox API：获取地图基础数据  
+   - 气象局API：实时天气数据订阅  
+
+2. **数据处理层**  
+   - 人流预测模型（LSTM神经网络）  
+   - 天气预警规则引擎（Drools实现）  
+
+3. **数据推送层**  
+   - WebSocket服务器：实时推送通知  
+   - Redis Stream：消息持久化  
+
+```mermaid
+classDiagram
+    class RealTimeDataService {
+        +getTrafficStatus(lat: Double, lng: Double): TrafficStatus
+        +getWeatherAlert(areaCode: String): WeatherAlert
+        +getLocationPopularity(locationId: Int): PopularityScore
+    }
+    
+    class TrafficStatus {
+        speed: Double
+        congestionLevel: Int
+        updateTimestamp: Long
+    }
+    
+    class WeatherAlert {
+        level: String
+        description: String
+        effectiveTime: String
+    }
+    
+    RealTimeDataService "1" --> "1" TrafficStatus
+    RealTimeDataService "1" --> "1" WeatherAlert
+```
+
+### 4.3 碳足迹计算模块  
+**计算逻辑**：  
+1. **数据采集**  
+   - 出行方式碳系数库（汽车/高铁/飞机）  
+   - 酒店能耗模型（星级/入住天数）  
+
+2. **计算公式**  
+   ```python
+   def calculate_carbon_footprint(trip):
+       total = 0
+       for activity in trip.activities:
+           if activity.type == "TRANSPORT":
+               total += distance * transport_co2_factor[activity.mode]
+           elif activity.type == "ACCOMMODATION":
+               total += star_rating * daily_stay * hotel_co2_factor
+       return total
+   ```
+
+3. **可视化设计**  
+   - 碳足迹热力图（ECharts渲染）  
+   - 碳中和建议生成器（推荐植树/低碳活动）  
+
+---
+
+## 5. UML图示例  
+### 5.1 类图（核心模块）  
+```mermaid
+classDiagram
+    class TripService {
+        +generateTrip(userId: Int): List<Trip>
+        +updateActivity(tripId: Int, activity: Activity): Boolean
+    }
+    
+    class AIEngine {
+        +recommendSceneries(preferences: Map<String, Object>): List<Location>
+        +optimizeBudget(trip: Trip): OptimizedBudget
+    }
+    
+    TripService "1" --> "1" AIEngine
+```
+
+### 5.2 序列图（文化体验预约）  
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant ExperienceService
+    participant PaymentGateway
+    
+    User->>Frontend: 选择体验项目
+    Frontend->>ExperienceService: 调用/book-experience接口
+    ExperienceService->>PaymentGateway: 发起支付请求
+    PaymentGateway-->>ExperienceService: 支付结果
+    ExperienceService-->>Frontend: 返回预约凭证
+    Frontend->>User: 显示预约成功页面
+```
+
+---
+
+**文档版本**：V1.0 | **批准人**：XXX（指导老师）

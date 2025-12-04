@@ -1,0 +1,339 @@
+/* RealTimeInfoPage组件样式 */
+.content {
+  padding: 24px;
+  background-color: #f0f2f5;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 页面头部 */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.scenicSelector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mapIcon {
+  color: #1890ff;
+  font-size: 18px;
+}
+
+/* 加载状态 */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 16px;
+  color: #999;
+}
+
+/* 空状态 */
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 16px;
+  color: #999;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* 概览行 */
+.overviewRow {
+  margin-bottom: 16px;
+}
+
+/* 天气卡片 */
+.weatherCard {
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.weatherContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.weatherIconContainer {
+  width: 64px;
+  height: 64px;
+  background-color: #e6f7ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weatherIcon {
+  font-size: 32px;
+  color: #1890ff;
+}
+
+.weatherInfo {
+  flex: 1;
+}
+
+.weatherDetails {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #666;
+}
+
+/* 人流卡片 */
+.crowdCard {
+  height: 100%;
+  border-radius: 8px;
+}
+
+.progress {
+  margin: 16px 0;
+}
+
+.crowdStatus {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* 时间卡片 */
+.timeCard {
+  height: 100%;
+  border-radius: 8px;
+}
+
+.openHours {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+  justify-content: center;
+}
+
+.timeIcon {
+  color: #52c41a;
+}
+
+/* 交通卡片 */
+.trafficCard {
+  height: 100%;
+  border-radius: 8px;
+}
+
+.trafficDetails {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #666;
+  justify-content: center;
+}
+
+.trafficIcon {
+  color: #fa8c16;
+}
+
+/* 卡片通用样式 */
+.alertsCard,
+.trendCard,
+.reviewsCard {
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.alertIcon {
+  color: #ff4d4f;
+  font-size: 20px;
+}
+
+.trendIcon {
+  color: #52c41a;
+  font-size: 20px;
+}
+
+.reviewIcon {
+  color: #faad14;
+  font-size: 20px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* 预警信息 */
+.alertItem {
+  padding-bottom: 8px;
+}
+
+.alertItem p {
+  margin: 4px 0 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* 人流趋势 */
+.trendChart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 200px;
+  padding: 0 8px;
+}
+
+.trendBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 40px;
+}
+
+.bar {
+  width: 100%;
+  min-height: 4px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.5s ease;
+}
+
+.barLabel {
+  font-size: 12px;
+  color: #999;
+  margin-top: 8px;
+}
+
+/* 游客评价 */
+.reviewItem {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.reviewItem:last-child {
+  border-bottom: none;
+}
+
+.reviewRating {
+  color: #faad14;
+  margin-bottom: 8px;
+}
+
+.reviewContent {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.viewMoreButton {
+  width: 100%;
+  color: #1890ff;
+}
+
+.viewMoreButton:hover {
+  color: #40a9ff;
+  background-color: #f0f5ff;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .pageHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .pageTitle {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .scenicSelector {
+    justify-content: center;
+  }
+  
+  .trendChart {
+    height: 150px;
+  }
+  
+  .barLabel {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 20px;
+  }
+  
+  .weatherContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .weatherIconContainer {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .weatherIcon {
+    font-size: 24px;
+  }
+  
+  .weatherDetails {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .trendChart {
+    height: 120px;
+  }
+  
+  .barLabel {
+    font-size: 9px;
+    margin-top: 4px;
+  }
+}

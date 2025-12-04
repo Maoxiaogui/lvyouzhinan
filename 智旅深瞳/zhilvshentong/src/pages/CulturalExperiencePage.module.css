@@ -1,0 +1,383 @@
+/* CulturalExperiencePage组件样式 */
+.cultural-experience-page {
+  padding: 24px;
+  background-color: #f0f2f5;
+}
+
+/* 页面头部 */
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+
+.page-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* 搜索栏 */
+.search-bar {
+  max-width: 800px;
+  margin: 0 auto 32px;
+}
+
+/* 内容容器 */
+.content-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 体验项目网格 */
+.experiences-grid h2 {
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+/* 体验卡片 */
+.experience-card {
+  height: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.experience-card.selected {
+  border-color: #1890ff;
+  box-shadow: 0 6px 16px rgba(24, 144, 255, 0.2);
+}
+
+.card-cover {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.experience-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+}
+
+.experience-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.meta-icon {
+  font-size: 12px;
+}
+
+.experience-category {
+  margin-bottom: 8px;
+}
+
+.experience-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ff4d4f;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-text {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 详情面板 */
+.experience-detail h2 {
+  color: #333;
+  margin-bottom: 16px;
+  font-size: 24px;
+}
+
+.detail-panel {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  height: fit-content;
+  position: sticky;
+  top: 24px;
+}
+
+.no-selection {
+  background-color: white;
+  border-radius: 8px;
+  padding: 64px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 详情头部 */
+.detail-header {
+  margin-bottom: 24px;
+}
+
+.detail-header h2 {
+  font-size: 24px;
+  margin: 0 0 16px 0;
+}
+
+.detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.detail-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.detail-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 详情图片 */
+.detail-image {
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+/* 详情标签页 */
+.detail-tabs {
+  margin-bottom: 24px;
+}
+
+/* 详情内容 */
+.detail-description,
+.detail-highlights,
+.detail-inclusion {
+  margin-bottom: 24px;
+}
+
+.detail-description h3,
+.detail-highlights h3,
+.detail-inclusion h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.detail-description p,
+.detail-highlights ul,
+.detail-inclusion ul {
+  color: #666;
+  line-height: 1.6;
+}
+
+.detail-highlights li,
+.detail-inclusion li {
+  margin-bottom: 8px;
+}
+
+/* 评价部分 */
+.reviews-section {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.review-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.review-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.user-icon {
+  font-size: 16px;
+}
+
+.review-date {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.review-content {
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 预订信息 */
+.booking-info h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.info-item {
+  margin-bottom: 16px;
+}
+
+.info-item h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.info-item p,
+.info-item ul {
+  color: #666;
+  margin: 0;
+}
+
+.info-item li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* 预订操作 */
+.booking-action {
+  display: flex;
+  gap: 12px;
+}
+
+.inquiry-btn {
+  flex: 1;
+}
+
+.booking-action .ant-btn-primary {
+  flex: 2;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .content-container {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .content-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .detail-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .cultural-experience-page {
+    padding: 16px;
+  }
+  
+  .page-header h1 {
+    font-size: 24px;
+  }
+  
+  .experiences-grid h2,
+  .experience-detail h2 {
+    font-size: 20px;
+  }
+  
+  .detail-image {
+    height: 180px;
+  }
+  
+  .booking-action {
+    flex-direction: column;
+  }
+  
+  .booking-action .ant-btn-primary,
+  .inquiry-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-panel {
+    padding: 16px;
+  }
+  
+  .detail-header h2 {
+    font-size: 20px;
+  }
+  
+  .detail-image {
+    height: 150px;
+  }
+}

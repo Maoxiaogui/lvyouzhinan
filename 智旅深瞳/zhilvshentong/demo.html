@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智旅深瞳 - 演示版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+                'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: rgba(0, 0, 0, 0.85);
+            line-height: 1.5715;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 64px;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 64px;
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1890ff;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: #8c8c8c;
+            margin: 2px 0 0 0;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .menu-item {
+            margin: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .menu-item:hover, .menu-item.active {
+            color: #1890ff;
+        }
+        
+        /* 主页英雄区域 */
+        .hero-section {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: #1890ff;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #40a9ff;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 介绍区域 */
+        .intro-section {
+            padding: 80px 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1890ff;
+        }
+        
+        .section-description {
+            text-align: center;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto 48px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.65);
+            text-align: center;
+        }
+        
+        /* 功能卡片区域 */
+        .feature-cards {
+            padding: 80px 20px;
+            background-color: white;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 24px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .card-description {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.65);
+            margin-bottom: 16px;
+        }
+        
+        /* 页脚 */
+        .footer {
+            background-color: #001529;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 48px 20px 24px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-title {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-copyright {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 16px;
+            }
+            
+            .menu {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <h1 class="logo-title">智旅深瞳</h1>
+                <span class="logo-subtitle">AI旅行革命平台</span>
+            </div>
+            <ul class="menu">
+                <li class="menu-item active">首页</li>
+                <li class="menu-item">智能行程</li>
+                <li class="menu-item">实时信息</li>
+                <li class="menu-item">文化体验</li>
+                <li class="menu-item">碳足迹</li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 主页英雄区域 -->
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div>
+                <h1 class="hero-title"><span style="color: #1890ff;">智旅深瞳</span> - 开启您的<span style="color: #1890ff;">AI旅行革命</span></h1>
+                <p class="hero-subtitle">突破传统旅行边界，以人工智能重塑您的探索之旅，让每一次出行都成为独一无二的精彩故事</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">开始规划行程</a>
+                    <a href="#" class="btn btn-secondary">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 介绍区域 -->
+    <section class="intro-section">
+        <div class="container">
+            <h2 class="section-title">重新定义旅行体验的智能革命</h2>
+            <p class="section-description">
+                智旅深瞳不仅是一个旅游助手，更是您探索世界的智能伙伴。我们融合尖端AI技术与深度旅行洞察，打破传统旅行的局限，让每一次出行都成为一场充满惊喜与发现的个性化冒险。
+            </p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🧭</div>
+                    <h3 class="feature-title">智能规划</h3>
+                    <p class="feature-description">基于用户偏好智能生成最优行程方案，充分考虑时间、距离、兴趣等因素。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">实时信息</h3>
+                    <p class="feature-description">提供景点实时天气、人流、交通等信息，帮助用户做出明智决策。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎭</div>
+                    <h3 class="feature-title">文化体验</h3>
+                    <p class="feature-description">推荐当地特色文化体验，深入了解目的地的历史和风土人情。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌱</div>
+                    <h3 class="feature-title">绿色出行</h3>
+                    <p class="feature-description">计算行程碳足迹，提供环保建议，助力可持续旅游。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能卡片区域 -->
+    <section class="feature-cards">
+        <div class="container">
+            <h2 class="section-title">突破想象的智能旅行功能</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">智能行程规划</h3>
+                        <p class="card-description">根据您的兴趣、时间和预算，智能生成最优行程方案，自动安排景点游览顺序，优化交通路线，让您的旅行更加高效舒适。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">实时信息聚合</h3>
+                        <p class="card-description">整合天气、人流、交通等多源实时数据，提供景点实时状态，帮助您避开拥挤，选择最佳游览时间，提升旅行体验。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">文化体验推荐</h3>
+                        <p class="card-description">深度挖掘当地文化资源，推荐特色文化体验活动，让您不仅欣赏风景，更能感受当地文化魅力，丰富旅行内涵。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <h3 class="footer-title">关于我们</h3>
+                <ul class="footer-links">
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">团队成员</a></li>
+                    <li><a href="#">发展历程</a></li>
+                    <li><a href="#">联系我们</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">产品服务</h3>
+                <ul class="footer-links">
+                    <li><a href="#">智能行程规划</a></li>
+                    <li><a href="#">实时信息查询</a></li>
+                    <li><a href="#">文化体验推荐</a></li>
+                    <li><a href="#">碳足迹计算</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">帮助支持</h3>
+                <ul class="footer-links">
+                    <li><a href="#">使用指南</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">意见反馈</a></li>
+                    <li><a href="#">服务条款</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">关注我们</h3>
+                <ul class="footer-links">
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">微博</a></li>
+                    <li><a href="#">小红书</a></li>
+                    <li><a href="#">抖音</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2025 智旅深瞳. 保留所有权利.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 菜单项点击效果
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // 平滑滚动效果
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        // 这里可以添加滚动到特定部分的逻辑
+                        console.log('按钮被点击:', this.textContent);
+                    }
+                });
+            });
+
+            // 页脚链接点击效果
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('页脚链接被点击:', this.textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
